@@ -1,0 +1,22 @@
+{
+    "directories" : [
+        {
+            "name" : "movies",
+            "movies" : [
+                {
+                    "name" : "Wall E",
+                    "type" : "hollywood",
+                    "languages" : ["hindi"],
+                    "file_name" : "Wall E (Hindi) - Blu-Ray - 720p - x264 - [Armaan].mkv"
+                },
+                {
+                    "name" : "Thor 2",
+                    "type" : "hollywood",
+                    "year" : 2013,
+                    "languages" : ["english, hindi"],
+                    "file_name" : "Thor 2 - The Dark World (2013) BRRip [Dual Audio - Eng+Hindi].mkv"
+                }
+            ]
+        }
+    ]
+}
