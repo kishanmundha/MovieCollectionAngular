@@ -15,6 +15,13 @@
                     "year" : 2013,
                     "languages" : ["english, hindi"],
                     "file_name" : "Thor 2 - The Dark World (2013) BRRip [Dual Audio - Eng+Hindi].mkv"
+                },
+                {
+                    "name" : "The Social Network",
+                    "type" : "hollywood",
+                    "year" : 2010,
+                    "languages" : ["english"],
+                    "file_name" : "The Social Network (2010) 1080p BrRip x264 - 1.2GB - YIFY.mp4"
                 }
             ]
         }
