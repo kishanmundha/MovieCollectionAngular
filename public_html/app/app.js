@@ -8,7 +8,8 @@ var movieApp = angular.module('movieApp', [
 
   'movieControllers',
   //'phonecatFilters',
-  'movieServices'
+  'movieServices',
+  'checklist-model'
 ]);
 
 //movieApp.config(['$routeProvider',

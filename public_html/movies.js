@@ -6,7 +6,8 @@ window.json_data = {
                 {
                     "name" : "Wall E",
                     "type" : "hollywood",
-                    "languages" : ["hindi"],
+                    "year" : 2008,
+                    "lang" : ["hindi"],
                     "file_name" : "Wall E (Hindi) - Blu-Ray - 720p - x264 - [Armaan].mkv",
                     "mime" : "mkv",
                     "file_size" : 519050132,
@@ -18,7 +19,7 @@ window.json_data = {
                     "name" : "Thor 2",
                     "type" : "hollywood",
                     "year" : 2013,
-                    "languages" : ["english, hindi"],
+                    "lang" : ["english", "hindi"],
                     "file_name" : "Thor 2 - The Dark World (2013) BRRip [Dual Audio - Eng+Hindi].mkv",
                     "mime" : "mkv",
                     "img" : "img/thor-2.jpg",
@@ -28,40 +29,20 @@ window.json_data = {
                     "name" : "The Social Network",
                     "type" : "hollywood",
                     "year" : 2010,
-                    "languages" : ["english"],
+                    "lang" : ["english"],
                     "file_name" : "The Social Network (2010) 1080p BrRip x264 - 1.2GB - YIFY.mp4",
                     "mime" : "mp4",
                     "img" : "img/the-social-network.jpg",
                     "imdb_rate" : 7.8
                 },
                 {
-                    "name" : "The Social Network",
+                    "name" : "American Gangster",
                     "type" : "hollywood",
-                    "year" : 2010,
-                    "languages" : ["english"],
-                    "file_name" : "The Social Network (2010) 1080p BrRip x264 - 1.2GB - YIFY.mp4",
-                    "mime" : "mp4",
-                    "img" : "img/the-social-network.jpg",
-                    "imdb_rate" : 7.8
-                },
-                {
-                    "name" : "The Social Network",
-                    "type" : "hollywood",
-                    "year" : 2010,
-                    "languages" : ["english"],
-                    "file_name" : "The Social Network (2010) 1080p BrRip x264 - 1.2GB - YIFY.mp4",
-                    "mime" : "mp4",
-                    "img" : "img/the-social-network.jpg",
-                    "imdb_rate" : 7.8
-                },
-                {
-                    "name" : "The Social Network",
-                    "type" : "hollywood",
-                    "year" : 2010,
-                    "languages" : ["english"],
-                    "file_name" : "The Social Network (2010) 1080p BrRip x264 - 1.2GB - YIFY.mp4",
-                    "mime" : "mp4",
-                    "img" : "img/the-social-network.jpg",
+                    "year" : 2007,
+                    "lang" : ["english", "hindi"],
+                    "file_name" : "American Gangster (2007) UNRATED 720p BRRip [Dual-Audio] [Eng-Hindi] TeamTNT ExClusive.mkv",
+                    "mime" : "mkv",
+                    "img" : "img/american-gangster.jpg",
                     "imdb_rate" : 7.8
                 }
             ]

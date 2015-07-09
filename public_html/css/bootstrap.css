@@ -1654,7 +1654,7 @@ legend {
 label {
   display: inline-block;
   margin-bottom: 5px;
-  font-weight: bold;
+/*  font-weight: bold;*/
 }
 
 input[type="search"] {
@@ -1850,6 +1850,10 @@ select.input-lg {
 
 textarea.input-lg {
   height: auto;
+}
+
+.control-label {
+    font-weight: bold;
 }
 
 .has-warning .help-block,
