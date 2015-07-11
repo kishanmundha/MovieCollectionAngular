@@ -92,7 +92,7 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie',
             if(size >= 10)
                 size = size - size % 1;
             else
-                size = size - size % 0.01;
+                size = parseInt(size*100)/100;
             
             return size + ' ' + SizeMap[SizeMapPos];
         }

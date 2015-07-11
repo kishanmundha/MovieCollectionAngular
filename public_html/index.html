@@ -97,7 +97,7 @@ and open the template in the editor.
                                         <div class="row">
                                             <div class="col-xs-6">
                                                 <div ng-show="movie.lang" style="font-size:12px;"><span style="text-transform:capitalize;">{{movie.lang.join(', ')}}</span></div>
-                                                <div style="font-size:12px; text-transform: capitalize">{{movie.type}}</div>
+                                                <div style="font-size:12px; text-transform: capitalize">{{movie.type || 'other'}}</div>
                                                 <div ng-show="movie.imdb_rate" style="font-size:12px">IMDB rate : {{movie.imdb_rate}}</div>
                                                 <div ng-show="movie.year" style="font-size:12px">Year : {{movie.year}}</div>
                                             </div>

@@ -210,7 +210,7 @@ window.json_data = {
                 {
                     "name" : "Wanted",
                     "type" : "hollywood",
-                    "year" : 0,
+                    "year" : 2008,
                     "lang" : ["english", "hindi"],
                     "file_name" : "Wanted.mkv",
                     "ext" : "mkv",
@@ -218,6 +218,90 @@ window.json_data = {
                     "length" : 105,
                     "img" : "img/wanted.jpg",
                     "imdb_rate" : 6.7
+                },
+                {
+                    "name" : "King Kong",
+                    "type" : "hollywood",
+                    "year" : 2005,
+                    "lang" : ["english", "hindi"],
+                    "file_name" : "King Kong 2005 Extended BRRip 720p{Dual audio}[Eng Hindi]Current_HD.mkv",
+                    "ext" : "mkv",
+                    "file_size" : 1078086425,
+                    "length" : 192,
+                    "img" : "img/king-kong.jpg",
+                    "imdb_rate" : 7.3
+                },
+                {
+                    "name" : "PK",
+                    "type" : "bollywood",
+                    "year" : 2014,
+                    "lang" : ["hindi"],
+                    "file_name" : "PK (2014) - 720p - mHD - x264 - AC3 - 5.1 - NonRetail - Hindi ~ Cool_Release.mkv",
+                    "ext" : "mkv",
+                    "file_size" : 1763774283,
+                    "length" : 152,
+                    "img" : "img/pk.jpg",
+                    "imdb_rate" : 8.4
+                },
+                {
+                    "name" : "Rebel",
+                    "type" : "tollywood",
+                    "year" : 2012,
+                    "lang" : ["hindi", "other"],
+                    "file_name" : "Rebel (2012)  m-HD  720p  Hindi  Telugu  BHATTI87.mkv",
+                    "ext" : "mkv",
+                    "file_size" : 2823101205,
+                    "length" : 170,
+                    "img" : "img/rebel.jpg",
+                    "imdb_rate" : 4.1
+                },
+                {
+                    "name" : "Rock On!!",
+                    "type" : "bollywood",
+                    //"year" : 0,
+                    "lang" : ["hindi"],
+                    "file_name" : "Rock On!!.mkv",
+                    "ext" : "mkv",
+                    "file_size" : 2346834825,
+                    "length" : 145,
+                    "img" : "img/rock-on.jpg",
+                    "imdb_rate" : 7.9
+                },
+                {
+                    "name" : "Risky Business",
+                    "type" : "hollywood",
+                    "year" : 1983,
+                    "lang" : ["english"],
+                    "file_name" : "Risky Business 1983 DvDrip[Eng]-greenbud1969.avi",
+                    "ext" : "avi",
+                    "file_size" : 734330880,
+                    "length" : 160,
+                    "img" : "img/risky-business.jpg",
+                    "imdb_rate" : 6.8
+                },
+                {
+                    "name" : "Dil Dhadakne Do",
+                    "type" : "bollywood",
+                    "year" : 2015,
+                    "lang" : ["hindi"],
+                    "file_name" : "Dil Dhadakne Do (2015).mp4",
+                    "ext" : "mp4",
+                    "file_size" : 943660640,
+                    "length" : 162,
+                    "img" : "img/dil-dhadakne-do.jpg",
+                    "imdb_rate" : 6.9
+                },
+                {
+                    "name" : "Tanu Weds Manu Returns",
+                    "type" : "bollywood",
+                    "year" : 2015,
+                    "lang" : ["hindi"],
+                    "file_name" : "Tanu Weds Manu Returns (2015).mkv",
+                    "ext" : "mkv",
+                    "file_size" : 723432159,
+                    "length" : 128,
+                    "img" : "img/tanu-weds-manu-returns.jpg",
+                    "imdb_rate" : 8.3
                 }
             ]
         }
