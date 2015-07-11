@@ -24,24 +24,38 @@ and open the template in the editor.
         <script src="app/controllers.js"></script>
         <script src="app/services.js"></script>
         <style>
+            html, body {
+                background-color: #eeeeee;
+            }
             .margin-10
             {
                 margin: 10px;
             }
+            .backcolor {
+                background-color: #eeeeee;
+            }
             body{
                 padding-top: 20px;
             }
+            .play-button {
+                cursor: pointer;
+                display:none;
+            }
+            .movie-card:hover .play-button {
+                display:inline;
+            }
+
         </style>
     </head>
-    <body>
-        <div ng-controller="movieListCtrl">
+    <body ng-controller="movieListCtrl">
+        <div>
             <div class="col-md-3 col-sm-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading"><strong>Filter</strong></div>
-                    <div class="panel-body">
+                    <div class="panel-body backcolor">
                         <div class="form-group">
                             <label for="search" class="control-label">Search</label>
-                            <input id="search" type="text" class="form-control" autofocus="true" ng-model="query" />
+                            <input id="search" type="text" class="form-control" ng-model="query" />
                         </div>
                         <div class="panel panel-info">
                             <div class="panel-heading"><strong>Type</strong></div>
@@ -71,19 +85,27 @@ and open the template in the editor.
             <div class="col-md-9 col-sm-8">
                 <div class="panel panel-primary">
                     <div class="panel-heading"><strong>Movies</strong><span class="pull-right"><select type="text" ng-model="movieOrderBy" ng-options="o.value as o.text for o in orderByOptions" class="form-control" style="height: 25px; width:200px; padding:0px 5px;"></select></span></div>
-                    <div class="panel-body">
+                    <div class="panel-body backcolor">
                         <div class="row" style="margin-top: 10px;">
-                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" ng-repeat="movie in movies| filter: {'name':query} | filter:filterMovies() | orderBy: movieOrderBy">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 movie-card" ng-repeat="movie in movies| filter: {'name':query} | filter:filterMovies() | orderBy: movieOrderBy">
                                 <div class="panel panel-default">
                                     <div class="" style="display:inline-block">
                                         <img ng-src="{{movie.img}}" style="width:80px; height:96px; background-color: #777777;" />
                                     </div>
-                                    <div style="display: inline-block; margin-left: 10px; vertical-align: top;">
-                                        <div style="font-weight:bold;">{{movie.name|| 'No name'}}</div>
-                                        <div ng-show="movie.lang" style="font-size:12px;">Available in <span style="text-transform:capitalize;">{{movie.lang.join(', ')}}</span></div>
-                                        <div style="font-size:12px; text-transform: capitalize">{{movie.type}}</div>
-                                        <div ng-show="movie.imdb_rate" style="font-size:12px">IMDB rate : {{movie.imdb_rate}}</div>
-                                        <div ng-show="movie.year" style="font-size:12px">Year : {{movie.year}}</div>
+                                    <div style="display: inline-block; margin-left: 10px; vertical-align: top; width: 70%;">
+                                        <div style="font-weight:bold;">{{movie.name|| 'No name'}} <span class="glyphicon glyphicon-play-circle play-button" ng-click="playMovie(movie)"></span></div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div ng-show="movie.lang" style="font-size:12px;"><span style="text-transform:capitalize;">{{movie.lang.join(', ')}}</span></div>
+                                                <div style="font-size:12px; text-transform: capitalize">{{movie.type}}</div>
+                                                <div ng-show="movie.imdb_rate" style="font-size:12px">IMDB rate : {{movie.imdb_rate}}</div>
+                                                <div ng-show="movie.year" style="font-size:12px">Year : {{movie.year}}</div>
+                                            </div>
+                                            <div class="col-xs-6" style="border-left: 1px solid #eeeeee;">
+                                                <div ng-show="movie.length" style="font-size:12px;">{{getMovieLengthString(movie.length)}}</div>
+                                                <div ng-show="movie.file_size" style="font-size:12px;">{{getFileSizeString(movie.file_size)}}</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -92,6 +114,27 @@ and open the template in the editor.
                     <div class="panel-footer">
                         <span ng-hide="isFilterMode()">Total movies : {{movies.length}}</span>
                         <span ng-show="isFilterMode()">Showing movies {{(movies| filter:{'name':query} | filter:filterMovies() ).length}} of {{movies.length}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="viewMovieModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document" style="width:100%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Playing movie "{{playingMovie.name|| 'No name'}}"</h4>
+                    </div>
+                    <div class="modal-body">
+                        <video width="480" height="360" controls>
+                            <source src="F:\Movies\Ninja.Hindi_Eng.mkv" type="video/mp4">
+                            <source src="F:\Movies\Ninja.Hindi_Eng.mkv" type="video/ogg">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

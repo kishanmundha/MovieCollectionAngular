@@ -62,6 +62,57 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie',
                 //return item.name === criteria.name;
             };
         };
+        
+        $scope.getMovieLengthString = function(len) {
+            if(!len)
+                return undefined;
+            
+            var hours = parseInt(len / 60);
+            var minutes = len % 60;
+            
+            return "Duration " + hours + ":" + (minutes<10?'0'+minutes:minutes);
+        }
+        
+        $scope.getFileSizeString = function(size) {
+            if(!size)
+                return undefined;
+            
+            size = parseFloat(size);
+            
+            var SizeMap = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+            
+            var SizeMapPos = 0;
+            
+            while(size >= 1024 && SizeMapPos < SizeMap.length) {
+                size = parseFloat(size / 1024);
+                
+                SizeMapPos++;
+            }
+            
+            if(size >= 10)
+                size = size - size % 1;
+            else
+                size = size - size % 0.01;
+            
+            return size + ' ' + SizeMap[SizeMapPos];
+        }
+        
+        $scope.playingMovie = undefined;
+        
+        $scope.playMovie = function (movie) {
+            $scope.playingMovie = movie;
+            
+            var whiteListExt = ['mkv'];
+            
+            if(whiteListExt.indexOf(movie.ext) === -1) {
+                alert('Not support media');
+                return;
+            }
+            
+            window.open(movie.file_path, 'play_movie', 'fullscreen=1, location=no');
+            
+            //$("#viewMovieModal").modal('show');
+        }
 
         $scope.SelectedPhone = {};
 

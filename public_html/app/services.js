@@ -14,18 +14,27 @@ movieServices.factory('movie', function() {
             //movie_list.push("kishan");
             
             for(var i=0; i<window.json_data.directories.length; i++) {
-                addMovieFromDir(window.json_data.directories[i]);
+                addMovieFromDir(window.json_data.directories[i], 'movies');
             }
         }
         
-        var addMovieFromDir = function(dir) {
-            console.debug('fetching movie list from "' + (dir.name || 'no name') + '"');
+        var addMovieFromDir = function(dir, dir_path) {
+            dir_path = dir_path || '';
+            
+            console.debug('fetching movie list from "' + (dir_path + '/' + dir.name || 'no name') + '"');
             
             if(dir.movies !== undefined) {
                 for(var i=0; i<dir.movies.length; i++) {
                     console.debug('\tadding movie in list "' + (dir.movies[i].name || 'no name') + '"');
                     
-                    movie_list.push(dir.movies[i]);
+                    var movie = dir.movies[i];
+                    
+                    movie.imdb_rate = movie.imdb_rate || 1;
+                    movie.year = movie.year || 1900;
+                    
+                    movie.file_path = dir_path + '/' + dir.name + '/' + movie.file_name;
+                    
+                    movie_list.push(movie);
                 }
             }
             
