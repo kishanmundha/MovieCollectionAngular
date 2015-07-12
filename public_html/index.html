@@ -19,6 +19,7 @@ and open the template in the editor.
         <script src="js/checklist-model.js"></script>
 
         <script type="text/javascript" src="movies.js"></script>
+        <script type="text/javascript" src="config/config.js"></script>
 
         <script src="app/app.js"></script>
         <script src="app/controllers.js"></script>
@@ -45,20 +46,74 @@ and open the template in the editor.
                 display:inline;
             }
 
+            .form-control-small-height {
+                height: 25px;
+                width:200px;
+                padding:0px 5px;
+            }
+
+            @media (max-width: 767px) {
+                .panel-filter .panel-body {
+                    display: none;
+                }
+                .panel-filter:hover .panel-body {
+                    display: block;
+                }
+
+                .filter-body-area {
+                    display: none;
+                }
+            }
+
         </style>
     </head>
-    <body ng-controller="movieListCtrl">
+    <body ng-controller="movieListCtrl" ng-init='init()'>
         <div>
             <div class="col-md-3 col-sm-4">
                 <div class="panel panel-primary">
-                    <div class="panel-heading"><strong>Filter</strong></div>
-                    <div class="panel-body backcolor">
+                    <div class="panel-heading">
+                        <strong>Filter</strong>
+                        <span class='pull-right visible-xs'>
+                            <input type='text' style='display:inline-block' class='form-control form-control-small-height' ng-model="query" placeholder="Search" />
+                            <span id='toggleFilterAreaBtn' style='margin-left: 10px;cursor: pointer; font-size: 120%;' ng-click='toggleFilterArea()' class="glyphicon glyphicon-collapse-down"></span>
+                        </span>
+                    </div>
+                    <div id='filterBodyArea' class="panel-body backcolor filter-body-area">
                         <div class="form-group">
                             <label for="search" class="control-label">Search</label>
-                            <input id="search" type="text" class="form-control" ng-model="query" />
+                            <input id="search" type="text" class="form-control" ng-model="query" placeholder="Search" />
                         </div>
-                        <div class="panel panel-info">
-                            <div class="panel-heading"><strong>Type</strong></div>
+                        <div class="panel panel-info panel-filter">
+                            <div class="panel-heading"><strong>Features</strong>  <span class='visible-xs' ng-show="filterVideoQuality.length > 0" style="font-size: 80%; text-transform: uppercase; color: black;">({{filterVideoQuality.join(', ')}})</span>
+                                <span class='visible-xs' ng-show="filterSubtitles" style="font-size: 80%; text-transform: capitalize; color: black;">(Subtitles)</span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div ng-repeat="vq in videoQualities">
+                                        <input id="vq_{{vq.id}}" type="checkbox" checklist-model="filterVideoQuality" checklist-value="vq.id" />
+                                        <label for="vq_{{vq.id}}" style="text-transform: capitalize;">{{vq.text}}</label>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <input id="f_subtitles" type="checkbox" ng-model="filterSubtitles"/>
+                                    <label for="f_subtitles" style="text-transform: capitalize;">subtitles</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-info panel-filter">
+                            <div class="panel-heading"><strong>Region</strong> <span class='visible-xs' ng-show="filterRegions.length > 0" style="font-size: 80%; text-transform: capitalize; color: black;">({{filterRegions.join(', ')}})</span></div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div ng-repeat="region in movieRegions">
+                                        <input id="region_{{region}}" type="checkbox" checklist-model="filterRegions" checklist-value="region" />
+                                        <label for="region_{{region}}" style="text-transform: capitalize;">{{region}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-info panel-filter">
+                            <div class="panel-heading"><strong>Type</strong> <span class='visible-xs' ng-show="filterTypes.length > 0" style="font-size: 80%; text-transform: capitalize; color: black;">({{filterTypes.join(', ')}})</span></div>
                             <div class="panel-body">
                                 <div class="form-group">
                                     <div ng-repeat="type in movieTypes">
@@ -68,8 +123,8 @@ and open the template in the editor.
                                 </div>
                             </div>
                         </div>
-                        <div class="panel panel-info">
-                            <div class="panel-heading"><strong>Language</strong></div>
+                        <div class="panel panel-info panel-filter">
+                            <div class="panel-heading"><strong>Language</strong> <span class='visible-xs' ng-show="filterLang.length > 0" style="font-size: 80%; text-transform: capitalize; color: black;">({{filterLang.join(', ')}})</span></div>
                             <div class="panel-body">
                                 <div class="form-group">
                                     <div ng-repeat="lang in movieLanguages">
@@ -84,7 +139,7 @@ and open the template in the editor.
             </div>
             <div class="col-md-9 col-sm-8">
                 <div class="panel panel-primary">
-                    <div class="panel-heading"><strong>Movies</strong><span class="pull-right"><select type="text" ng-model="movieOrderBy" ng-options="o.value as o.text for o in orderByOptions" class="form-control" style="height: 25px; width:200px; padding:0px 5px;"></select></span></div>
+                    <div class="panel-heading"><strong>Movies</strong><span class="pull-right"><select type="text" ng-model="movieOrderBy" ng-options="o.value as o.text for o in orderByOptions" class="form-control form-control-small-height"></select></span></div>
                     <div class="panel-body backcolor">
                         <div class="row" style="margin-top: 10px;">
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 movie-card" ng-repeat="movie in movies| filter: {'name':query} | filter:filterMovies() | orderBy: movieOrderBy">
@@ -97,12 +152,24 @@ and open the template in the editor.
                                         <div class="row">
                                             <div class="col-xs-6">
                                                 <div ng-show="movie.lang" style="font-size:12px;"><span style="text-transform:capitalize;">{{movie.lang.join(', ')}}</span></div>
-                                                <div style="font-size:12px; text-transform: capitalize">{{movie.type || 'other'}}</div>
-                                                <div ng-show="movie.imdb_rate" style="font-size:12px">IMDB rate : {{movie.imdb_rate}}</div>
+                                                <div style="font-size:12px; text-transform: capitalize">{{movie.region|| 'other'}}</div>
+                                                <div ng-show="movie.types" style="font-size:12px;"><span style="text-transform:capitalize;">{{movie.types.join(', ')}}</span></div>
+                                                <!--
+                                                <div ng-show="movie.imdb_rate" style="font-size:12px">
+                                                    <a ng-click='openIMDBLink(movie.imdb_id)' style='cursor: pointer; color:black;'
+                                                       ng-mouseenter="showIMDBData(movie.imdb_id)"
+                                                       >IMDB rate : {{movie.imdb_rate}}</a>
+                                                </div>
+                                                -->
                                                 <div ng-show="movie.year" style="font-size:12px">Year : {{movie.year}}</div>
                                             </div>
                                             <div class="col-xs-6" style="border-left: 1px solid #eeeeee;">
-                                                <div ng-show="movie.length" style="font-size:12px;">{{getMovieLengthString(movie.length)}}</div>
+                                                <rating ng-model="movie.rate" max="5" readonly="true" title='IMDB Rating : {{movie.imdb_rate}}'></rating>
+                                                <div style="font-size:12px;">
+                                                    <span ng-show="movie.quality.video" class="glyphicon glyphicon-{{movie.quality.video}}-video"></span>
+                                                    <span ng-show="movie.subtitles" class="glyphicon glyphicon-subtitles"></span>
+                                                </div>
+                                                <div ng-show="movie.length" style="font-size:12px;"><span class="glyphicon glyphicon-time"></span> {{getMovieLengthString(movie.length)}}</div>
                                                 <div ng-show="movie.file_size" style="font-size:12px;">{{getFileSizeString(movie.file_size)}}</div>
                                             </div>
                                         </div>
@@ -118,27 +185,5 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="viewMovieModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document" style="width:100%;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Playing movie "{{playingMovie.name|| 'No name'}}"</h4>
-                    </div>
-                    <div class="modal-body">
-                        <video width="480" height="360" controls>
-                            <source src="F:\Movies\Ninja.Hindi_Eng.mkv" type="video/mp4">
-                            <source src="F:\Movies\Ninja.Hindi_Eng.mkv" type="video/ogg">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div ng-view></div>
     </body>
 </html>
