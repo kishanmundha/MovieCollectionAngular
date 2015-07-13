@@ -62,7 +62,7 @@ movieServices.factory('movie', ['browser', function(browser) {
             // sub directories
             if(dir.directories !== undefined) {
                 for(var i=0; i<dir.directories.length; i++) {
-                    addMovieFromDir(dir.directories[i]);
+                    addMovieFromDir(dir.directories[i], dir_path + '/' + dir.name);
                 }
             }
         }
