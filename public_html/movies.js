@@ -974,7 +974,7 @@ window.json_data = {
                     "ext" : "mkv",
                     "file_size" : 1454920414,
                     "length" : 158,
-                    "img" : "img/singam-2-tollywood.png",
+                    "img" : "img/singam-2-tollywood.jpg",
                     "imdb_rate" : 6.2,
                     "quality" : {"video" : "sd"},
                     //"subtitles" : true
