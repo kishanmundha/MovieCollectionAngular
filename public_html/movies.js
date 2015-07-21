@@ -773,7 +773,8 @@ window.json_data = {
             "name" : "bollywood",
             "movies" : [
                 {
-                    "name" : "Saathiya",
+                    //"name" : "Saathiya",
+                    "name" : {"en":"Saathiya","hi":"साथिया"},
                     "region" : "bollywood",
                     "year" : 2002,
                     "lang" : ["hindi"],

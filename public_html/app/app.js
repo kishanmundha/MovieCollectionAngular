@@ -3,28 +3,13 @@
 /* App Module */
 
 var movieApp = angular.module('movieApp', [
-  //'ngRoute',
-  //'phonecatAnimations',
+    //'ngRoute',
+    //'phonecatAnimations',
 
-  'movieControllers',
-  //'phonecatFilters',
-  'movieServices',
-  'checklist-model',
-  'ui.bootstrap'
+    'movieControllers',
+    //'phonecatFilters',
+    'movieServices',
+    'checklist-model',
+    'ui.bootstrap',
+    'pascalprecht.translate'
 ]);
-
-//movieApp.config(['$routeProvider',
-//  function($routeProvider) {
-//    $routeProvider.
-//      when('/movies', {
-//        templateUrl: 'partials/movie-list.html',
-//        controller: 'movieListCtrl'
-//      }).
-//      when('/phones/:phoneId', {
-//        templateUrl: 'partials/phone-detail.html',
-//        controller: 'PhoneDetailCtrl'
-//      }).
-//      otherwise({
-//        redirectTo: '/movies'
-//      });
-//  }]);

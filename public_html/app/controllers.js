@@ -4,17 +4,20 @@
 
 var movieControllers = angular.module('movieControllers', []);
 
-movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$window',
-    function($scope, movie, $http, $window) {
+movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$window', '$translate',
+    function($scope, movie, $http, $window, $translate) {
+
+        $scope.lang = 'en';
+        $translate.use($scope.lang);
 
         $scope.movies = movie.getAll();
 
         $scope.orderByOptions = [
-            { "text" : "Name", "value" : "name"},
-            { "text" : "Imdb rating", "value" : "-imdb_rate" },
-            { "text" : "Year", "value" : "-year" },
-            { "text" : "Duration", "value" : "length" },
-            { "text" : "Duration DESC", "value" : "-length" }
+            { "text" : {"en": "Name", "hi" : "नाम"}, "value" : "name"},
+            { "text" : {"en" : "Imdb rating", "hi" : "IMDB रेटिंग"}, "value" : "-imdb_rate" },
+            { "text" : {"en" : "Year", "hi" : "वर्ष"}, "value" : "-year" },
+            { "text" : {"en" : "Duration", "hi" : "अवधि"}, "value" : "length" },
+            { "text" : {"en" : "Duration DESC", "hi" : "अवधि अवरोही"}, "value" : "-length" }
         ];
         
         $scope.movieOrderBy = "-imdb_rate";
@@ -34,8 +37,8 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
         ];
         
         $scope.videoQualities = [
-            {"id" : "hd", "text" : "high defination"},
-            {"id" : "sd", "text" : "standard defination"}
+            {"id" : "hd", "text" : "high definition"},
+            {"id" : "sd", "text" : "standard definition"}
         ];
 
         $scope.filterRegions = [];
@@ -178,6 +181,22 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
             }).error(function(data) {
                 console.debug(data);
             });
+        }
+        
+        $scope.search = function(m) {
+            if ($scope.query === undefined || $scope.query.length === 0) {
+                return true;
+            }
+            
+            var m_name = m.name || 'No name';
+            var m_name2 = m.name || 'No name';
+            
+            m_name = m_name[$scope.lang] || m_name;
+            m_name2 = m_name2['en'] || m_name2;
+            
+            return m_name.toLowerCase().indexOf($scope.query.toLowerCase()) !== -1
+            || m_name2.toLowerCase().indexOf($scope.query.toLowerCase()) !== -1
+            ;
         }
 
         $scope.init = function () {
