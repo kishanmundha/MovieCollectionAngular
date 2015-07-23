@@ -506,7 +506,7 @@ window.json_data = {
                     "img" : "img/Battleship.jpg",
                     "imdb_rate" : 5.9,
                     "quality" : {"video" : "hd"},
-                    //"subtitles" : true
+                    "subtitles" : true
                 },
                 {
                     "name" : "Catch Me If You Can",

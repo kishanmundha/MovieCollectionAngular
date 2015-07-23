@@ -145,18 +145,24 @@ and open the template in the editor.
                     <div class="panel-heading">
                         <strong>{{ 'Movies' | translate }}</strong>
                         <span class="pull-right">
-                            <select type="text" ng-model="movieOrderBy" ng-options="o.value as o.text[lang] for o in orderByOptions" class="form-control form-control-small-height"></select>
+                            <select style="display: inline-block; width: 120px;" type="text" ng-model="lang" ng-options="o.value as o.text for o in LangOptions" class="form-control form-control-small-height" ng-change="changeLang(lang)"></select>
+                            <select style="display: inline-block; width: 70px;" type="text" ng-model="displayLimit" ng-options="o.value as o.text for o in displayLimitOptions" class="form-control form-control-small-height" ng-change="setSessionValue('dlimit', displayLimit)"></select>
+                            <select style="display: inline-block;" type="text" ng-model="movieOrderBy" ng-options="o.value as o.text[lang] for o in orderByOptions" class="form-control form-control-small-height" ng-change="setSessionValue('orderby', movieOrderBy)"></select>
                         </span>
                     </div>
                     <div class="panel-body backcolor">
                         <div class="row" style="margin-top: 10px;">
-                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 movie-card" ng-repeat="movie in movies| filter:search | filter:filterMovies() | orderBy: movieOrderBy">
+                            <div
+                                class="col-xs-12 col-sm-12 col-md-6 col-lg-6 movie-card"
+                                ng-repeat="movie in movies| filter:search | filter:filterMovies() | orderBy: movieOrderBy | startFrom:startFrom | limitTo:displayLimit">
                                 <div class="panel panel-default">
                                     <div class="" style="display:inline-block">
                                         <img ng-src="{{movie.img}}" style="width:80px; height:96px; background-color: #777777;" />
                                     </div>
                                     <div style="display: inline-block; margin-left: 10px; vertical-align: top; width: 70%;">
-                                        <div style="font-weight:bold;">{{movie.name[lang]|| movie.name || 'No name'}} <span class="glyphicon glyphicon-play-circle play-button" ng-click="playMovie(movie)"></span></div>
+                                        <div style="font-weight:bold;">{{movie.name[lang]|| movie.name || 'No name'}} <span class="glyphicon glyphicon-play-circle play-button" ng-click="playMovie(movie)" title="Play"></span>
+                                            <!--<span class="pull-right glyphicon glyphicon-copy" style="cursor:pointer;" title="Copy path"></span>-->
+                                        </div>
                                         <div class="row">
                                             <div class="col-xs-6">
                                                 <div ng-show="movie.lang" style="font-size:12px;"><span style="text-transform:capitalize;">{{movie.lang.join(', ')}}</span></div>
@@ -180,8 +186,10 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <span ng-hide="isFilterMode()">Total movies : {{movies.length}}</span>
-                        <span ng-show="isFilterMode()">Showing movies {{(movies| filter:{'name':query} | filter:filterMovies() ).length}} of {{movies.length}}</span>
+                        <span>{{getStatusString()}}</span>
+                        <!--<span ng-hide="isFilterMode()">Total movies : {{movies.length}}</span>
+                        <span ng-show="isFilterMode()">Showing movies {{(movies| filter:{'name':query} | filter:filterMovies() ).length}} of {{movies.length}}</span>-->
+                        <pagination class="pagination-sm pull-right" style="margin: -5px 0px 10px 0px;" direction-links="false" total-items="(movies | filter:search | filter:filterMovies()).length" max-size="5" boundary-links="true" ng-model="currentPage" items-per-page="displayLimit" rotate="false" ng-change="currentPageChange()"></pagination>
                     </div>
                 </div>
             </div>
