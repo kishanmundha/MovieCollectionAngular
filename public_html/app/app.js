@@ -5,6 +5,7 @@
 var movieApp = angular.module('movieApp', [
     //'ngRoute',
     //'phonecatAnimations',
+    'ngAnimate',
 
     'movieControllers',
     //'phonecatFilters',

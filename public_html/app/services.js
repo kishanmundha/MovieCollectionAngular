@@ -2,7 +2,7 @@
 
 /* Services */
 
-var movieServices = angular.module('movieServices', ['ngResource']);
+var movieServices = angular.module('movieServices', []);
 
 movieServices.service('browser', ['$window', function($window) {
 

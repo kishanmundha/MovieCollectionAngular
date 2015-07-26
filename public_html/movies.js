@@ -22,6 +22,7 @@ window.json_data = {
                 {
                     "name" : "Thor: The Dark World",
                     "region" : "hollywood",
+                    "types" : ["action"],
                     "year" : 2013,
                     "lang" : ["english", "hindi"],
                     "file_name" : "Thor 2 - The Dark World (2013) BRRip [Dual Audio - Eng+Hindi].mkv",
@@ -88,6 +89,7 @@ window.json_data = {
                 {
                     "name" : "Coraline",
                     "region" : "hollywood",
+                    "types" : ["animation"],
                     "year" : 2009,
                     "lang" : ["english"],
                     "file_name" : "[9movies.co.cc]Coraline.2009.DVDRip.x264.scOrp.mkv",
@@ -101,6 +103,7 @@ window.json_data = {
                 {
                     "name" : "Ninja Assassin",
                     "region" : "hollywood",
+                    "types" : ["action"],
                     "year" : 2009,
                     "lang" : ["english", "hindi"],
                     "file_name" : "Ninja.Hindi_Eng.mkv",
@@ -155,6 +158,7 @@ window.json_data = {
                 {
                     "name" : "Fearless",
                     "region" : "hollywood",
+                    "types" : ["action"],
                     "year" : 2006,
                     "lang" : ["english"],
                     "file_name" : "2006 - Jet.Li.Fearless.cd1-Eng.avi",
@@ -168,6 +172,7 @@ window.json_data = {
                 {
                     "name" : "300",
                     "region" : "hollywood",
+                    "types" : ["action"],
                     "year" : 2006,
                     "lang" : ["english", "hindi"],
                     "file_name" : "300(2006)1080p[Dual Audio] [Eng-Hindi]Current_HD.mkv",
@@ -181,6 +186,7 @@ window.json_data = {
                 {
                     "name" : "Spider Man",
                     "region" : "hollywood",
+                    "types" : ["action"],
                     "year" : 2002,
                     "lang" : ["english", "hindi"],
                     "file_name" : "Spider Man (2002).avi",
@@ -220,6 +226,7 @@ window.json_data = {
                 {
                     "name" : "Wanted",
                     "region" : "hollywood",
+                    "types" : ["action"],
                     "year" : 2008,
                     "lang" : ["english", "hindi"],
                     "file_name" : "Wanted.mkv",
@@ -234,6 +241,7 @@ window.json_data = {
                 {
                     "name" : "King Kong",
                     "region" : "hollywood",
+                    "types" : ["action"],
                     "year" : 2005,
                     "lang" : ["english", "hindi"],
                     "file_name" : "King Kong 2005 Extended BRRip 720p{Dual audio}[Eng Hindi]Current_HD.mkv",
@@ -273,6 +281,7 @@ window.json_data = {
                 {
                     "name" : "Black Hawk Down",
                     "region" : "hollywood",
+                    "types" : ["action"],
                     //"year" : ,
                     "lang" : ["hindi"],
                     "file_name" : "black hawk down/BHD 1.dat",
@@ -356,7 +365,7 @@ window.json_data = {
                     //"subtitles" : true
                 },
                 {
-                    "name" : "Men-of-Honor",
+                    "name" : "Men of Honor",
                     "region" : "hollywood",
                     "year" : 2000,
                     "lang" : ["english"],
@@ -372,6 +381,7 @@ window.json_data = {
                 {
                     "name" : "Safe",
                     "region" : "hollywood",
+                    "types" : ["action"],
                     "year" : 2012,
                     "lang" : ["english", "hindi"],
                     "file_name" : "Safe (2012) 720p Blu-Ray x264 [Dual-Audio] [English + Hindi] - Mafiaking/Safe (2012) 720p Blu-Ray x264 [Dual-Audio] [English + Hindi] - Mafiaking.mkv",
@@ -414,6 +424,7 @@ window.json_data = {
                 {
                     "name" : "Terminator 2: Judgment Day",
                     "region" : "hollywood",
+                    "types" : ["action"],
                     "year" : 1991,
                     "lang" : ["english", "hindi"],
                     "file_name" : "Terminator 2 - Judgment Day (1991)/Terminator 2 - Judgment Day (1991) 720p BRRip x264 [Dual-Audio] [Eng-Hindi].mkv",
@@ -499,6 +510,7 @@ window.json_data = {
                 {
                     "name" : "Battleship",
                     "region" : "hollywood",
+                    "types" : ["action"],
                     "year" : 2012,
                     "lang" : ["english"],
                     "file_name" : "Battelship (2012) 720p BrRip 870MiB Theroxstar Release",
@@ -587,6 +599,7 @@ window.json_data = {
                 {
                     "name" : "Riddick",
                     "region" : "hollywood",
+                    "types" : ["action"],
                     "year" : 2013,
                     "lang" : ["english", "hindi"],
                     "file_name" : "Riddick.mkv",
@@ -621,6 +634,7 @@ window.json_data = {
                         {
                             "name" : "James Bond 007: Goldfinger",
                             "region" : "hollywood",
+                            "types" : ["action"],
                             "year" : 1964,
                             "lang" : ["english"],
                             "file_name" : "03 - James Bond 007 - Goldfinger [DivX] (1964).avi",
@@ -635,6 +649,7 @@ window.json_data = {
                         {
                             "name" : "James Bond 007: Casino Royale",
                             "region" : "hollywood",
+                            "types" : ["action"],
                             "year" : 2006,
                             "lang" : ["english"],
                             "file_name" : "Casino.Royale[2006]DvDrip[Eng]-aXXo.avi",
@@ -649,6 +664,7 @@ window.json_data = {
                         {
                             "name" : "James Bond 007: Diamonds Are Forever",
                             "region" : "hollywood",
+                            "types" : ["action"],
                             "year" : 1971,
                             "lang" : ["english"],
                             "file_name" : "Diamonds Are Forever[1971]DvDrip[Eng]-FXG.avi",
@@ -663,6 +679,7 @@ window.json_data = {
                         {
                             "name" : "James Bond 007: Dr. No",
                             "region" : "hollywood",
+                            "types" : ["action"],
                             "year" : 1962,
                             "lang" : ["english"],
                             "file_name" : "Dr. No[1962]DvDrip[Eng]-FXG.avi",
@@ -677,6 +694,7 @@ window.json_data = {
                         {
                             "name" : "James Bond 007: From Russia with Love",
                             "region" : "hollywood",
+                            "types" : ["action"],
                             "year" : 1963,
                             "lang" : ["english"],
                             "file_name" : "From Russia with Love[1963]DvDrip[Eng]-FXG.avi",
@@ -691,6 +709,7 @@ window.json_data = {
                         {
                             "name" : "James Bond 007: GoldenEye",
                             "region" : "hollywood",
+                            "types" : ["action"],
                             "year" : 1995,
                             "lang" : ["english"],
                             "file_name" : "GOLDEN EYE(1995)DVDrip-Xvid-5.1CH-AC3={DaBaS}=™.avi",
@@ -705,6 +724,7 @@ window.json_data = {
                         {
                             "name" : "James Bond 007: The World Is Not Enough",
                             "region" : "hollywood",
+                            "types" : ["action"],
                             "year" : 1999,
                             "lang" : ["english"],
                             "file_name" : "James Bond 007 - The world is not enough (1999) [ENG] [DVDrip].avi",
@@ -719,6 +739,7 @@ window.json_data = {
                         {
                             "name" : "James Bond 007: Tomorrow Never Dies",
                             "region" : "hollywood",
+                            "types" : ["action"],
                             "year" : 1997,
                             "lang" : ["english"],
                             "file_name" : "James Bond 007 - Tomorrow Never Dies (1997) [ENG] [DVDrip].avi",
@@ -733,6 +754,7 @@ window.json_data = {
                         {
                             "name" : "James Bond 007: Quantum of Solace",
                             "region" : "hollywood",
+                            "types" : ["action"],
                             "year" : 2008,
                             "lang" : ["english"],
                             "file_name" : "Quantum of Solace.[2008].DVDRIP.XVID.[Eng]-DUQA.avi",
@@ -747,6 +769,7 @@ window.json_data = {
                         {
                             "name" : "James Bond 007: Thunderball",
                             "region" : "hollywood",
+                            "types" : ["action"],
                             "year" : 1965,
                             "lang" : ["english"],
                             "file_name" : "Thunderball[1965]DvDrip[Eng]-FXG.avi",
@@ -761,6 +784,7 @@ window.json_data = {
                         {
                             "name" : "James Bond 007: You Only Live Twice",
                             "region" : "hollywood",
+                            "types" : ["action"],
                             "year" : 1967,
                             "lang" : ["english"],
                             "file_name" : "You Only Live Twice[1967]DvDrip[Eng]-FXG.avi",
@@ -847,6 +871,7 @@ window.json_data = {
                 {
                     "name" : "Khichdi The Movie",
                     "region" : "bollywood",
+                    "types" : ["comedy"],
                     "year" : 2010,
                     "lang" : ["hindi"],
                     "file_name" : "Khichdi The Movie/Khichdi The Movie (2010) - (797 MB) - BRRip - 720p - X264 - AAC ~=[101]=~ [TMRG].mkv",
@@ -936,6 +961,7 @@ window.json_data = {
                 {
                     "name" : "Rebel",
                     "region" : "tollywood",
+                    "types" : ["action"],
                     "year" : 2012,
                     "lang" : ["hindi", "other"],
                     "file_name" : "Rebel (2012)  m-HD  720p  Hindi  Telugu  BHATTI87.mkv",
@@ -949,6 +975,7 @@ window.json_data = {
                 {
                     "name" : "Business Man",
                     "region" : "tollywood",
+                    "types" : ["action"],
                     "year" : 2012,
                     "lang" : ["hindi", "other"],
                     "file_name" : "Business Man (2012).mkv",
@@ -963,6 +990,7 @@ window.json_data = {
                 {
                     "name" : "Oosaravelli",
                     "region" : "tollywood",
+                    "types" : ["action"],
                     "year" : 2011,
                     "lang" : ["hindi", "other"],
                     "file_name" : "Oosaravelli-Mar Mitenge (2011) BRRip x264 [Dual-Audio] [Telugu-Hindi] [395MB].mkv",
@@ -976,6 +1004,7 @@ window.json_data = {
                 },
                 {
                     "name" : "Singam 2",
+                    "types" : ["action"],
                     "region" : "tollywood",
                     "year" : 2013,
                     "lang" : ["hindi", "other"],
