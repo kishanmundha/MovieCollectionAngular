@@ -315,6 +315,7 @@ window.json_data = {
                 {
                     "name" : "Finding Nemo",
                     "region" : "hollywood",
+                    "types" : ["animation"],
                     "year" : 2003,
                     "lang" : ["english", "hindi"],
                     "file_name" : "Finding Nemo (2003) BRRip 720p x264 [Dual Audio][Hindi+English]--prisak--{HKRG}/Finding Nemo (2003) BRRip 720p x264 [Dual Audio][Hindi+English]--prisak--{HKRG}.mkv",
@@ -483,6 +484,7 @@ window.json_data = {
                 {
                     "name" : "The Lion King",
                     "region" : "hollywood",
+                    "types" : ["animation"],
                     "year" : 1994,
                     "lang" : ["english", "hindi"],
                     "file_name" : "The Lion King (1994)/The Lion King 720p  x264 AAC BRRip [Dual Audio] [English+Hindi] ~R@ju~ [WBRG].mkv",
@@ -525,6 +527,7 @@ window.json_data = {
                 {
                     "name" : "Kung Fu Panda",
                     "region" : "hollywood",
+                    "types" : ["animation"],
                     "year" : 2008,
                     "lang" : ["hindi"],
                     "file_name" : "kumfu panda.vob",
@@ -539,6 +542,7 @@ window.json_data = {
                 {
                     "name" : "Madagascar: Escape 2 Africa",
                     "region" : "hollywood",
+                    "types" : ["animation"],
                     "year" : 2008,
                     "lang" : ["english", "hindi"],
                     "file_name" : "Madagascar Escape 2 Africa.mkv",
@@ -553,6 +557,7 @@ window.json_data = {
                 {
                     "name" : "Madagascar",
                     "region" : "hollywood",
+                    "types" : ["animation"],
                     "year" : 2005,
                     "lang" : ["english", "hindi"],
                     "file_name" : "Madagascar.mkv",
@@ -567,6 +572,7 @@ window.json_data = {
                 {
                     "name" : "Ratatouille",
                     "region" : "hollywood",
+                    "types" : ["animation"],
                     "year" : 2007,
                     "lang" : ["hindi"],
                     "file_name" : "Ratatouille.avi",
@@ -595,6 +601,7 @@ window.json_data = {
                 {
                     "name" : "Shrek",
                     "region" : "hollywood",
+                    "types" : ["animation"],
                     "year" : 2001,
                     "lang" : ["hindi"],
                     "file_name" : "Shrek (2001) (In Hindi) - Full Movie - Screen4u.net - It_s Showtime.flv",
@@ -802,7 +809,7 @@ window.json_data = {
                 {
                     "name" : "Rock On!!",
                     "region" : "bollywood",
-                    //"year" : 0,
+                    "year" : 2008,
                     "lang" : ["hindi"],
                     "file_name" : "Rock On!!.mkv",
                     "ext" : "mkv",
@@ -813,7 +820,8 @@ window.json_data = {
                     "quality" : {"video" : "hd"}
                 },
                 {
-                    "name" : "Dil Dhadakne Do",
+                    //"name" : "Dil Dhadakne Do",
+                    "name" : {"en":"Dil Dhadakne Do","hi":"दिल धड़कने दो"},
                     "region" : "bollywood",
                     "year" : 2015,
                     "lang" : ["hindi"],

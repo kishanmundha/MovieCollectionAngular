@@ -19,7 +19,11 @@ myApp.labels_en = {
     "hindi" : "Hindi",
     "engllish" : "English",
     "other" : "Other",
-    "year" : "year"
+    "year" : "Year",
+    "Options" : "Options",
+    "Display item per page" : "Display item per page",
+    "Sort by" : "Sort by",
+    "Close" : "Close"
 };
 
 myApp.labels_hi = {
@@ -40,7 +44,11 @@ myApp.labels_hi = {
     "hindi" : "हिन्दी",
     "english" : "अंग्रेज़ी",
     "other" : "अन्य",
-    "year" : "वर्ष"
+    "year" : "वर्ष",
+    "Options" : "विकल्प",
+    "Display item per page" : "प्रति पृष्ठ प्रदर्शित आइटम",
+    "Sort by" : "इसके अनुसार क्रमबद्ध करें",
+    "Close" : "बंद करे"
 };
 
 myApp.config(["$translateProvider", function($translateProvider) {

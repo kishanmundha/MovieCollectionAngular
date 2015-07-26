@@ -41,6 +41,20 @@ and open the template in the editor.
             body{
                 padding-top: 20px;
             }
+
+            .actions {
+                display:none;
+                padding-right: 2px;
+            }
+
+            .actions .glyphicon {
+                cursor: pointer;
+            }
+
+            .movie-card:hover .actions {
+                display: block;
+            }
+
             .play-button {
                 cursor: pointer;
                 display:none;
@@ -66,6 +80,42 @@ and open the template in the editor.
                 .filter-body-area {
                     display: none;
                 }
+            }
+
+            @media (max-width: 400px) {
+                body {
+                    /*font-size: 90%;*/
+                }
+
+                .rating {
+                    font-size: 12px;
+                }
+            }
+
+            .my-card {
+                display: block;
+                height: 96px;
+            }
+
+            .my-card-left {
+                display: block;
+                float: left;
+            }
+
+            .my-card-right {
+                display: block;
+                margin-top: -96px;
+                vertical-align: top;
+                width: 100%;
+                float: left;
+                padding-left: 85px;
+            }
+
+            .movie-title {
+                font-weight: bold;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                height: 22px;
             }
 
         </style>
@@ -144,11 +194,16 @@ and open the template in the editor.
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <strong>{{ 'Movies' | translate }}</strong>
-                        <span class="pull-right">
-                            <select style="display: inline-block; width: 120px;" type="text" ng-model="lang" ng-options="o.value as o.text for o in LangOptions" class="form-control form-control-small-height" ng-change="changeLang(lang)"></select>
-                            <select style="display: inline-block; width: 70px;" type="text" ng-model="displayLimit" ng-options="o.value as o.text for o in displayLimitOptions" class="form-control form-control-small-height" ng-change="setSessionValue('dlimit', displayLimit)"></select>
-                            <select style="display: inline-block;" type="text" ng-model="movieOrderBy" ng-options="o.value as o.text[lang] for o in orderByOptions" class="form-control form-control-small-height" ng-change="setSessionValue('orderby', movieOrderBy)"></select>
-                        </span>
+                        <div class="pull-right">
+                            <div class="hidden-xs hidden-sm pull-left" style="margin-right: 5px;">
+                                <select title="{{ 'Language' | translate }}" style="width: 120px;" type="text" ng-model="lang" ng-options="o.value as o.text for o in LangOptions" class="form-control form-control-small-height" ng-change="changeLang(lang)"></select>
+                            </div>
+                            <div class="hidden-xs hidden-sm pull-left" style="margin-right: 5px;">
+                                <select title="{{ 'Display item per page' | translate }}" style="width: 70px;" type="text" ng-model="displayLimit" ng-options="o.value as o.text for o in displayLimitOptions" class="form-control form-control-small-height" ng-change="setSessionValue('dlimit', displayLimit)"></select>
+                            </div>
+                            <select title="{{ 'Sort by' | translate }}" style="display: inline-block;" type="text" ng-model="movieOrderBy" ng-options="o.value as o.text[lang] for o in orderByOptions" class="form-control form-control-small-height" ng-change="setSessionValue('orderby', movieOrderBy)"></select>
+                            <span title="Options" style="cursor: pointer; margin-left: 5px;" class="glyphicon glyphicon-option-vertical" ng-click="showMoreOptions()"></span>
+                        </div>
                     </div>
                     <div class="panel-body backcolor">
                         <div class="row" style="margin-top: 10px;">
@@ -156,28 +211,34 @@ and open the template in the editor.
                                 class="col-xs-12 col-sm-12 col-md-6 col-lg-6 movie-card"
                                 ng-repeat="movie in movies| filter:search | filter:filterMovies() | orderBy: movieOrderBy | startFrom:startFrom | limitTo:displayLimit">
                                 <div class="panel panel-default">
-                                    <div class="" style="display:inline-block">
-                                        <img ng-src="{{movie.img}}" style="width:80px; height:96px; background-color: #777777;" />
-                                    </div>
-                                    <div style="display: inline-block; margin-left: 10px; vertical-align: top; width: 70%;">
-                                        <div style="font-weight:bold;">{{movie.name[lang]|| movie.name || 'No name'}} <span class="glyphicon glyphicon-play-circle play-button" ng-click="playMovie(movie)" title="Play"></span>
-                                            <!--<span class="pull-right glyphicon glyphicon-copy" style="cursor:pointer;" title="Copy path"></span>-->
+                                    <div class="my-card">
+                                        <div class="my-card-left">
+                                            <img ng-src="{{movie.img}}" style="width:80px; height:96px; background-color: #777777;" />
                                         </div>
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <div ng-show="movie.lang" style="font-size:12px;"><span style="text-transform:capitalize;">{{movie.lang.join(', ')}}</span></div>
-                                                <div style="font-size:12px; text-transform: capitalize">{{ (movie.region || 'other') | translate}}</div>
-                                                <div ng-show="movie.types" style="font-size:12px;"><span style="text-transform:capitalize;">{{movie.types.join(', ')}}</span></div>
-                                                <div ng-show="movie.year" style="font-size:12px">{{ 'year' | translate }} : {{movie.year}}</div>
+                                        <div class="my-card-right">
+                                            <div class="pull-right actions">
+                                                <span class="glyphicon glyphicon-play-circle" ng-click="playMovie(movie)" title="Play"></span>
+                                                <!--<span class="glyphicon glyphicon-info-sign" title="Info"  popover-html-unsafe="I appeared on mouse enter! <br /> test" popover-title="{{movie.name[lang]|| movie.name || 'No name'}}" popover-placement="left" popover-trigger="mouseenter"></span>-->
                                             </div>
-                                            <div class="col-xs-6" style="border-left: 1px solid #eeeeee;">
-                                                <rating ng-model="movie.rate" max="5" readonly="true" title='IMDB Rating : {{movie.imdb_rate}}'></rating>
-                                                <div style="font-size:12px;">
-                                                    <span ng-show="movie.quality.video" class="glyphicon glyphicon-{{movie.quality.video}}-video"></span>
-                                                    <span ng-show="movie.subtitles" class="glyphicon glyphicon-subtitles"></span>
+                                            <div class="movie-title" title="{{movie.name[lang]|| movie.name || 'No name'}}">{{movie.name[lang]|| movie.name || 'No name'}}
+                                                <!--<span class="pull-right glyphicon glyphicon-copy" style="cursor:pointer;" title="Copy path"></span>-->
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <div ng-show="movie.lang" style="font-size:12px;"><span style="text-transform:capitalize;">{{getArrayJoinString_Lang(movie.lang)}}</span></div>
+                                                    <div style="font-size:12px; text-transform: capitalize">{{ (movie.region || 'other') | translate}}</div>
+                                                    <div ng-show="movie.types" style="font-size:12px;"><span style="text-transform:capitalize;">{{getArrayJoinString_Lang(movie.types)}}</span></div>
+                                                    <div ng-show="movie.year" style="font-size:12px">{{ 'year' | translate }} : {{movie.year}}</div>
                                                 </div>
-                                                <div ng-show="movie.length" style="font-size:12px;"><span class="glyphicon glyphicon-time"></span> {{getMovieLengthString(movie.length)}}</div>
-                                                <div ng-show="movie.file_size" style="font-size:12px;">{{getFileSizeString(movie.file_size)}}</div>
+                                                <div class="col-xs-6" style="border-left: 1px solid #eeeeee;">
+                                                    <rating class="rating" ng-model="movie.rate" max="5" readonly="true" title='IMDB Rating : {{movie.imdb_rate}}'></rating>
+                                                    <div style="font-size:12px;">
+                                                        <span ng-show="movie.quality.video" class="glyphicon glyphicon-{{movie.quality.video}}-video"></span>
+                                                        <span ng-show="movie.subtitles" class="glyphicon glyphicon-subtitles"></span>
+                                                    </div>
+                                                    <div ng-show="movie.length" style="font-size:12px;"><span class="glyphicon glyphicon-time"></span> {{getMovieLengthString(movie.length)}}</div>
+                                                    <div ng-show="movie.file_size" style="font-size:12px;">{{getFileSizeString(movie.file_size)}}</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -189,10 +250,48 @@ and open the template in the editor.
                         <span>{{getStatusString()}}</span>
                         <!--<span ng-hide="isFilterMode()">Total movies : {{movies.length}}</span>
                         <span ng-show="isFilterMode()">Showing movies {{(movies| filter:{'name':query} | filter:filterMovies() ).length}} of {{movies.length}}</span>-->
-                        <pagination class="pagination-sm pull-right" style="margin: -5px 0px 10px 0px;" direction-links="false" total-items="(movies | filter:search | filter:filterMovies()).length" max-size="5" boundary-links="true" ng-model="currentPage" items-per-page="displayLimit" rotate="false" ng-change="currentPageChange()"></pagination>
+                        <pagination class="pagination-sm pull-right" style="margin: -5px 0px 10px 0px;" direction-links="false" total-items="(movies | filter:search | filter:filterMovies()).length" max-size="3" boundary-links="true" ng-model="currentPage" items-per-page="displayLimit" rotate="false" ng-change="currentPageChange()"></pagination>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Modal more settings -->
+        <div class="modal fade" id="moreSettingsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{ 'Options' | translate }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-xs-4"><label>{{ 'Language' | translate }}</label></div>
+                                <div class="col-xs-8">
+                                    <select type="text" ng-model="lang" ng-options="o.value as o.text for o in LangOptions" class="form-control" ng-change="changeLang(lang)"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-4"><label>{{ 'Display item per page' | translate }}</label></div>
+                                <div class="col-xs-8">
+                                    <select type="text" ng-model="displayLimit" ng-options="o.value as o.text for o in displayLimitOptions" class="form-control" ng-change="setSessionValue('dlimit', displayLimit)"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-4"><label>{{ 'Sort by' | translate }}</label></div>
+                                <div class="col-xs-8">
+                                    <select type="text" ng-model="movieOrderBy" ng-options="o.value as o.text[lang] for o in orderByOptions" class="form-control" ng-change="setSessionValue('orderby', movieOrderBy)"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Close' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal more settings end -->
     </body>
 </html>

@@ -17,7 +17,7 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
             if (window.sessionStorage) {
                 window.sessionStorage[key] = value;
             }
-        }
+        };
 
         /**
          * Get data from session storage
@@ -26,7 +26,7 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
          */
         $scope.getSessionValue = function(key) {
             return window.sessionStorage && window.sessionStorage[key];
-        }
+        };
 
         /**
          * Language
@@ -42,7 +42,7 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
         $scope.changeLang = function(lang) {
             $translate.use(lang);
             $scope.setSessionValue('lang', lang);
-        }
+        };
 
         $scope.movies = movie.getAll();
 
@@ -50,8 +50,8 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
             {"text": {"en": "Name", "hi": "नाम"}, "value": "name"},
             {"text": {"en": "Imdb rating", "hi": "IMDB रेटिंग"}, "value": "-imdb_rate"},
             {"text": {"en": "Year", "hi": "वर्ष"}, "value": "-year"},
-            {"text": {"en": "Duration", "hi": "अवधि"}, "value": "length"},
-            {"text": {"en": "Duration DESC", "hi": "अवधि अवरोही"}, "value": "-length"}
+            {"text": {"en": "Duration", "hi": "अवधि"}, "value": "-length"},
+            {"text": {"en": "Duration ASC", "hi": "अवधि आरोही"}, "value": "length"}
         ];
 
         $scope.movieOrderBy = "-imdb_rate";
@@ -93,7 +93,7 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
                     || $scope.filterVideoQuality.length !== 0
                     || $scope.filterSubtitles === true
                     ;
-        }
+        };
 
         /**
          * Custom filter
@@ -176,7 +176,7 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
          */
         $scope.currentPageChange = function() {
             $scope.startFrom = ($scope.currentPage - 1) * $scope.displayLimit;
-        }
+        };
 
         /**
          * Get status string to display in footer
@@ -199,7 +199,7 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
                 //        + len
                 //        + " of " + $scope.movies.length;
             }
-        }
+        };
 
         /**
          * Get string for movie length
@@ -214,7 +214,7 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
             var minutes = len % 60;
 
             return hours + ":" + (minutes < 10 ? '0' + minutes : minutes);
-        }
+        };
         
         /**
          * Get string of file size
@@ -243,7 +243,24 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
                 size = parseInt(size * 100) / 100;
 
             return size + ' ' + SizeMap[SizeMapPos];
-        }
+        };
+        
+        /**
+         * Get comma seprated languages list
+         * @param {Array} arr
+         * @returns {String}
+         */
+        $scope.getArrayJoinString_Lang = function(arr) {
+            if( Object.prototype.toString.call( arr ) !== '[object Array]' )
+                return '';
+            
+            var a = [];
+            for(var i=0; i<arr.length; i++) {
+                a.push($filter('translate')(arr[i]));
+            }
+            
+            return a.join(', ');
+        };
 
         /**
          * Play movie
@@ -261,20 +278,20 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
             window.open(m.file_path, 'play_movie', 'fullscreen=1, location=no');
 
             //$("#viewMovieModal").modal('show');
-        }
+        };
 
         $scope.toggleFilterArea = function() {
             $("#filterBodyArea").toggleClass("filter-body-area");
             $("#toggleFilterAreaBtn").toggleClass("glyphicon-collapse-down");
             $("#toggleFilterAreaBtn").toggleClass("glyphicon-collapse-up");
-        }
+        };
 
         $scope.openIMDBLink = function(imdb_id) {
             if (!imdb_id)
                 return;
 
             return $window.open('http://www.imdb.com/title/' + imdb_id + '/', '_blank');
-        }
+        };
 
         $scope.showIMDBData = function(imdb_id) {
             if (!imdb_id)
@@ -286,7 +303,7 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
             }).error(function(data) {
                 console.debug(data);
             });
-        }
+        };
 
         /**
          * Custome search filter
@@ -307,11 +324,15 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
             return m_name.toLowerCase().indexOf($scope.query.toLowerCase()) !== -1
                     || m_name2.toLowerCase().indexOf($scope.query.toLowerCase()) !== -1
                     ;
-        }
+        };
+        
+        $scope.showMoreOptions = function() {
+            $('#moreSettingsModal').modal('show');
+        };
 
         $scope.init = function() {
 
-        }
+        };
     }
 ]);
 
@@ -321,5 +342,5 @@ movieControllers.filter('startFrom', function() {
     return function(input, start) {
         start = +start; //parse to int
         return input.slice(start);
-    }
+    };
 });
