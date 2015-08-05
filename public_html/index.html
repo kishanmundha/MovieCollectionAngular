@@ -48,11 +48,11 @@ and open the template in the editor.
             html, body {
                 background-color: #eeeeee;
             }
-            
+
             html {
                 padding-bottom: 20px;
             }
-            
+
             .margin-10
             {
                 margin: 10px;
@@ -113,6 +113,12 @@ and open the template in the editor.
                     font-size: 12px;
                 }
             }
+            
+            @media (max-width: 500px) {
+                html {
+                    padding-bottom: 40px;
+                }
+            }
 
             .my-card {
                 display: block;
@@ -145,15 +151,15 @@ and open the template in the editor.
                 bottom: 0;
                 z-index: 100;
                 width: 100%;
-                height: 30px;
+                /*height: 30px;*/
                 background-color: #012;
                 color: white;
             }
-            
+
             .footer a {
                 color: #48f;
             }
-            
+
             .footer a:hover {
                 color: #ccd;
             }
@@ -295,7 +301,7 @@ and open the template in the editor.
             </div>
         </div>
         <footer class="footer">
-            <div class="container" style="padding-top:5px;">
+            <div class="container" style="padding-top:5px;padding-bottom: 5px;">
                 <span class="pull-right">Design by <a href="mailto:kishan.mundha@gmail.com">kishan mundha</a>. View more on facebook page <a target="_blank" href="https://www.facebook.com/mundhaSoft">mundhaSoft</a></span>
             </div>
         </footer>
