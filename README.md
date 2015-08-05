@@ -1,6 +1,8 @@
 # MovieCollectionAngular
 Manager movies collection in angular
 
+View preview on 
+https://cdn.rawgit.com/kishanmundha/MovieCollectionAngular/master/public_html/index.html
 ----------------------------------------------------------
 To use this tool you must know about json
 
