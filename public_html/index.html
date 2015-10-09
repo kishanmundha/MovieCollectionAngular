@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="movieApp" ng-controller="movieListCtrl" ng-init='init()'>
     <head>
-        <title>{{ 'Movies' | translate}}</title>
+        <title ng-bind="'Movies' | translate"></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.css"/>
@@ -106,7 +106,7 @@
                     font-size: 12px;
                 }
             }
-            
+
             @media (max-width: 500px) {
                 html {
                     padding-bottom: 40px;
@@ -158,13 +158,21 @@
             }
         </style>
     </head>
-    <body >
-        <div>
+    <body>
+        <!-- no script section -->
+        <noscript>
+            <div style="background-color:red;color:white; text-align: center; padding: 20px; margin-top: -20px;">
+                <h1>Javascript required</h1>
+                <p>Please enable javascript to view this page.</p>
+            </div>
+        </noscript>
+
+        <div id="body_content" style="visibility: hidden;">
             <!-- Filter -->
             <div class="col-md-3 col-sm-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <strong>{{ 'Filter' | translate }}</strong>
+                        <strong ng-bind="'Filter' | translate"></strong>
                         <span class='pull-right visible-xs'>
                             <input type='text' style='display:inline-block' class='form-control form-control-small-height' ng-model="query" placeholder="{{ 'Search' | translate }}" />
                             <span id='toggleFilterAreaBtn' style='margin-left: 10px;cursor: pointer; font-size: 120%;' ng-click='toggleFilterArea()' class="glyphicon glyphicon-collapse-down"></span>
@@ -172,63 +180,63 @@
                     </div>
                     <div id='filterBodyArea' class="panel-body backcolor filter-body-area">
                         <div class="form-group">
-                            <label for="search" class="control-label">{{ 'Search' | translate }}</label>
+                            <label for="search" class="control-label" ng-bind="'Search' | translate"></label>
                             <input id="search" type="text" class="form-control" ng-model="query" placeholder="{{ 'Search' | translate }}" />
                         </div>
                         <!-- Features -->
                         <div class="panel panel-info panel-filter">
-                            <div class="panel-heading"><strong>{{ 'Features' | translate }}</strong>  <span class='visible-xs' ng-show="filterVideoQuality.length > 0" style="font-size: 80%; text-transform: uppercase; color: black;">({{filterVideoQuality.join(', ')}})</span>
+                            <div class="panel-heading"><strong ng-bind="'Features' | translate"></strong>  <span class='visible-xs' ng-show="filterVideoQuality.length > 0" style="font-size: 80%; text-transform: uppercase; color: black;">(<span ng-bind="filterVideoQuality.join(', ')"></span>)</span>
                                 <span class='visible-xs' ng-show="filterSubtitles" style="font-size: 80%; text-transform: capitalize; color: black;">(Subtitles)</span>
                             </div>
                             <div class="panel-body">
                                 <div class="form-group">
                                     <div ng-repeat="vq in videoQualities">
                                         <input id="vq_{{vq.id}}" type="checkbox" checklist-model="filterVideoQuality" checklist-value="vq.id" />
-                                        <label for="vq_{{vq.id}}" style="text-transform: capitalize;">{{ vq.text | translate }}</label>
+                                        <label for="vq_{{vq.id}}" style="text-transform: capitalize;" ng-bind="vq.text | translate"></label>
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="form-group">
                                     <input id="f_subtitles" type="checkbox" ng-model="filterSubtitles"/>
-                                    <label for="f_subtitles" style="text-transform: capitalize;">{{ 'subtitles' | translate }}</label>
+                                    <label for="f_subtitles" style="text-transform: capitalize;" ng-bind="'subtitles' | translate"></label>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Region -->
                         <div class="panel panel-info panel-filter">
-                            <div class="panel-heading"><strong>{{ 'Region' | translate }}</strong> <span class='visible-xs' ng-show="filterRegions.length > 0" style="font-size: 80%; text-transform: capitalize; color: black;">({{filterRegions.join(', ')}})</span></div>
+                            <div class="panel-heading"><strong ng-bind="'Region' | translate"></strong> <span class='visible-xs' ng-show="filterRegions.length > 0" style="font-size: 80%; text-transform: capitalize; color: black;">(<span ng-bind="filterRegions.join(', ')"></span>)</span></div>
                             <div class="panel-body">
                                 <div class="form-group">
                                     <div ng-repeat="region in movieRegions">
                                         <input id="region_{{region}}" type="checkbox" checklist-model="filterRegions" checklist-value="region" />
-                                        <label for="region_{{region}}" style="text-transform: capitalize;">{{ region | translate }}</label>
+                                        <label for="region_{{region}}" style="text-transform: capitalize;" ng-bind="region | translate"></label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Type -->
                         <div class="panel panel-info panel-filter">
-                            <div class="panel-heading"><strong>{{ 'Type' | translate }}</strong> <span class='visible-xs' ng-show="filterTypes.length > 0" style="font-size: 80%; text-transform: capitalize; color: black;">({{filterTypes.join(', ')}})</span></div>
+                            <div class="panel-heading"><strong ng-bind="'Type' | translate"></strong> <span class='visible-xs' ng-show="filterTypes.length > 0" style="font-size: 80%; text-transform: capitalize; color: black;">(<span ng-bind="filterTypes.join(', ')"></span>)</span></div>
                             <div class="panel-body">
                                 <div class="form-group">
                                     <div ng-repeat="type in movieTypes">
                                         <input id="type_{{type}}" type="checkbox" checklist-model="filterTypes" checklist-value="type" />
-                                        <label for="type_{{type}}" style="text-transform: capitalize;">{{ type | translate }}</label>
+                                        <label for="type_{{type}}" style="text-transform: capitalize;" ng-bind="type | translate"></label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Language -->
                         <div class="panel panel-info panel-filter">
-                            <div class="panel-heading"><strong>{{ 'Language' | translate }}</strong> <span class='visible-xs' ng-show="filterLang.length > 0" style="font-size: 80%; text-transform: capitalize; color: black;">({{filterLang.join(', ')}})</span></div>
+                            <div class="panel-heading"><strong ng-bind="'Language' | translate"></strong> <span class='visible-xs' ng-show="filterLang.length > 0" style="font-size: 80%; text-transform: capitalize; color: black;">(<span ng-bind="filterLang.join(', ')"></span>)</span></div>
                             <div class="panel-body">
                                 <div class="form-group">
                                     <div ng-repeat="lang in movieLanguages">
                                         <input id="lang_{{lang}}" type="checkbox" checklist-model="filterLang" checklist-value="lang" />
-                                        <label for="lang_{{lang}}" style="text-transform: capitalize;">{{ lang | translate }}</label>
+                                        <label for="lang_{{lang}}" style="text-transform: capitalize;" ng-bind="lang | translate"></label>
                                     </div>
                                 </div>
                             </div>
@@ -236,13 +244,13 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- End: Filter -->
-            
+
             <div class="col-md-9 col-sm-8">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <strong>{{ 'Movies' | translate }}</strong>
+                        <strong ng-bind="'Movies' | translate"></strong>
                         <div class="pull-right">
                             <div class="hidden-xs hidden-sm pull-left" style="margin-right: 5px;">
                                 <select title="{{ 'Language' | translate }}" style="width: 120px;" type="text" ng-model="lang" ng-options="o.value as o.text for o in LangOptions" class="form-control form-control-small-height" ng-change="changeLang(lang)"></select>
@@ -268,13 +276,13 @@
                                             <div class="pull-right actions">
                                                 <span class="glyphicon glyphicon-play-circle" ng-click="playMovie(movie)" title="Play"></span>
                                             </div>
-                                            <div class="movie-title" title="{{movie.name_lang[lang] || movie.name || 'No name'}}">{{movie.name[lang]|| movie.name || 'No name'}}</div>
+                                            <div class="movie-title" title="{{movie.name_lang[lang]|| movie.name || 'No name'}}" ng-bind="movie.name[lang] || movie.name || 'No name'"></div>
                                             <div class="row">
                                                 <div class="col-xs-6">
-                                                    <div ng-show="movie.lang" style="font-size:12px;"><span style="text-transform:capitalize;">{{getArrayJoinString_Lang(movie.lang)}}</span></div>
-                                                    <div style="font-size:12px; text-transform: capitalize">{{ (movie.region || 'other') | translate}}</div>
-                                                    <div ng-show="movie.types" style="font-size:12px;"><span style="text-transform:capitalize;">{{getArrayJoinString_Lang(movie.types)}}</span></div>
-                                                    <div ng-show="movie.year" style="font-size:12px">{{ 'year' | translate }} : {{movie.year}}</div>
+                                                    <div ng-show="movie.lang" style="font-size:12px;"><span style="text-transform:capitalize;" ng-bind="getArrayJoinString_Lang(movie.lang)"></span></div>
+                                                    <div style="font-size:12px; text-transform: capitalize" ng-bind="(movie.region || 'other') | translate"></div>
+                                                    <div ng-show="movie.types" style="font-size:12px;"><span style="text-transform:capitalize;" ng-bind="getArrayJoinString_Lang(movie.types)"></span></div>
+                                                    <div ng-show="movie.year" style="font-size:12px"><span ng-bind="'year' | translate"></span> : <span ng-bind="movie.year"></span></div>
                                                 </div>
                                                 <div class="col-xs-6" style="border-left: 1px solid #eeeeee;">
                                                     <rating class="rating" ng-model="movie.rate" max="5" readonly="true" title='IMDB Rating : {{movie.imdb_rate}}'></rating>
@@ -282,8 +290,8 @@
                                                         <span ng-show="movie.quality.video" class="glyphicon glyphicon-{{movie.quality.video}}-video"></span>
                                                         <span ng-show="movie.subtitles" class="glyphicon glyphicon-subtitles"></span>
                                                     </div>
-                                                    <div ng-show="movie.length" style="font-size:12px;"><span class="glyphicon glyphicon-time"></span> {{getMovieLengthString(movie.length)}}</div>
-                                                    <div ng-show="movie.file_size" style="font-size:12px;">{{getFileSizeString(movie.file_size)}}</div>
+                                                    <div ng-show="movie.length" style="font-size:12px;"><span class="glyphicon glyphicon-time"></span> <span ng-bind="getMovieLengthString(movie.length)"></span></div>
+                                                    <div ng-show="movie.file_size" style="font-size:12px;"><span ng-bind="getFileSizeString(movie.file_size)"></span></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -293,7 +301,7 @@
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <span>{{getStatusString()}}</span>
+                        <span ng-bind="getStatusString()"></span>
                         <!--<span ng-hide="isFilterMode()">Total movies : {{movies.length}}</span>
                         <span ng-show="isFilterMode()">Showing movies {{(movies| filter:{'name':query} | filter:filterMovies() ).length}} of {{movies.length}}</span>-->
                         <pagination class="pagination-sm pull-right" style="margin: -5px 0px 10px 0px;" direction-links="false" total-items="(movies | filter:search | filter:filterMovies()).length" max-size="3" boundary-links="true" ng-model="currentPage" items-per-page="displayLimit" rotate="false" ng-change="currentPageChange()"></pagination>
@@ -344,5 +352,9 @@
             </div>
         </div>
         <!-- Modal more settings end -->
+
+        <script>
+                    $('#body_content').css('visibility', 'visible');
+        </script>
     </body>
 </html>
