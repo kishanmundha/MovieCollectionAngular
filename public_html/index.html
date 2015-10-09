@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html ng-app="movieApp" ng-controller="movieListCtrl" ng-init='init()'>
     <head>
         <title>{{ 'Movies' | translate}}</title>
@@ -15,8 +10,6 @@ and open the template in the editor.
 
         <script src="js/angular.js"></script>
         <script src="js/angular-animate.js"></script>
-        <!--<script src="js/angular-route.js"></script>-->
-        <!--<script src="js/angular-resource.js"></script>-->
         <script src="js/ui-bootstrap-tpls-0.13.0.js"></script>
         <script src="js/checklist-model.js"></script>
         <script src="js/angular-translate.js"></script>
@@ -167,6 +160,7 @@ and open the template in the editor.
     </head>
     <body >
         <div>
+            <!-- Filter -->
             <div class="col-md-3 col-sm-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -181,6 +175,7 @@ and open the template in the editor.
                             <label for="search" class="control-label">{{ 'Search' | translate }}</label>
                             <input id="search" type="text" class="form-control" ng-model="query" placeholder="{{ 'Search' | translate }}" />
                         </div>
+                        <!-- Features -->
                         <div class="panel panel-info panel-filter">
                             <div class="panel-heading"><strong>{{ 'Features' | translate }}</strong>  <span class='visible-xs' ng-show="filterVideoQuality.length > 0" style="font-size: 80%; text-transform: uppercase; color: black;">({{filterVideoQuality.join(', ')}})</span>
                                 <span class='visible-xs' ng-show="filterSubtitles" style="font-size: 80%; text-transform: capitalize; color: black;">(Subtitles)</span>
@@ -199,6 +194,8 @@ and open the template in the editor.
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- Region -->
                         <div class="panel panel-info panel-filter">
                             <div class="panel-heading"><strong>{{ 'Region' | translate }}</strong> <span class='visible-xs' ng-show="filterRegions.length > 0" style="font-size: 80%; text-transform: capitalize; color: black;">({{filterRegions.join(', ')}})</span></div>
                             <div class="panel-body">
@@ -210,6 +207,8 @@ and open the template in the editor.
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- Type -->
                         <div class="panel panel-info panel-filter">
                             <div class="panel-heading"><strong>{{ 'Type' | translate }}</strong> <span class='visible-xs' ng-show="filterTypes.length > 0" style="font-size: 80%; text-transform: capitalize; color: black;">({{filterTypes.join(', ')}})</span></div>
                             <div class="panel-body">
@@ -221,6 +220,8 @@ and open the template in the editor.
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- Language -->
                         <div class="panel panel-info panel-filter">
                             <div class="panel-heading"><strong>{{ 'Language' | translate }}</strong> <span class='visible-xs' ng-show="filterLang.length > 0" style="font-size: 80%; text-transform: capitalize; color: black;">({{filterLang.join(', ')}})</span></div>
                             <div class="panel-body">
@@ -235,6 +236,9 @@ and open the template in the editor.
                     </div>
                 </div>
             </div>
+            
+            <!-- End: Filter -->
+            
             <div class="col-md-9 col-sm-8">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -256,18 +260,15 @@ and open the template in the editor.
                                 class="col-xs-12 col-sm-12 col-md-6 col-lg-6 movie-card"
                                 ng-repeat="movie in movies| filter:search | filter:filterMovies() | orderBy: movieOrderBy | startFrom:startFrom | limitTo:displayLimit">
                                 <div class="panel panel-default">
-                                    <div class="my-card">
+                                    <div class="my-card" ng-class="{'bg-danger':movie.dirty_scene}">
                                         <div class="my-card-left">
                                             <img ng-src="{{movie.img}}" style="width:80px; height:96px; background-color: #777777;" />
                                         </div>
                                         <div class="my-card-right">
                                             <div class="pull-right actions">
                                                 <span class="glyphicon glyphicon-play-circle" ng-click="playMovie(movie)" title="Play"></span>
-                                                <!--<span class="glyphicon glyphicon-info-sign" title="Info"  popover-html-unsafe="I appeared on mouse enter! <br /> test" popover-title="{{movie.name[lang]|| movie.name || 'No name'}}" popover-placement="left" popover-trigger="mouseenter"></span>-->
                                             </div>
-                                            <div class="movie-title" title="{{movie.name[lang]|| movie.name || 'No name'}}">{{movie.name[lang]|| movie.name || 'No name'}}
-                                                <!--<span class="pull-right glyphicon glyphicon-copy" style="cursor:pointer;" title="Copy path"></span>-->
-                                            </div>
+                                            <div class="movie-title" title="{{movie.name_lang[lang] || movie.name || 'No name'}}">{{movie.name[lang]|| movie.name || 'No name'}}</div>
                                             <div class="row">
                                                 <div class="col-xs-6">
                                                     <div ng-show="movie.lang" style="font-size:12px;"><span style="text-transform:capitalize;">{{getArrayJoinString_Lang(movie.lang)}}</span></div>

@@ -6,7 +6,7 @@ var movieControllers = angular.module('movieControllers', []);
 
 movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$window', '$translate', '$filter',
     function($scope, movie, $http, $window, $translate, $filter) {
-
+        
         /**
          * Set data in session storage
          * @param {String} key
@@ -54,7 +54,7 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
             {"text": {"en": "Duration ASC", "hi": "अवधि आरोही"}, "value": "length"}
         ];
 
-        $scope.movieOrderBy = "-imdb_rate";
+        $scope.movieOrderBy = $scope.getSessionValue('orderby') || "-imdb_rate";
 
         $scope.movieRegions = [
             "hollywood",
@@ -325,6 +325,16 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
                     || m_name2.toLowerCase().indexOf($scope.query.toLowerCase()) !== -1
                     ;
         };
+        
+//        $scope._orderBy = function(m) {
+//
+//            if($scope.movieOrderBy !== 'name') {
+//                return m[$scope.movieOrderBy];
+//            }
+//            else {
+//                return (m[name] && m[name][$scope.lang]) || m[name];
+//            }
+//        }
         
         $scope.showMoreOptions = function() {
             $('#moreSettingsModal').modal('show');

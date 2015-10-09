@@ -16,8 +16,9 @@ window.json_data = {
                     "img" : "img/wall-e.jpg",
                     "imdb_rate" : 8.4,
                     "imdb_id" : "tt0910970",
-                    "quality" : {"video" : "hd"}
-                    //"subtitles" : true
+                    "quality" : {"video" : "hd"},
+                    //"subtitles" : true,
+                    //"dirty_scene": true
                 },
                 {
                     "name" : "Thor: The Dark World",
@@ -804,8 +805,8 @@ window.json_data = {
             "name" : "bollywood",
             "movies" : [
                 {
-                    //"name" : "Saathiya",
-                    "name" : {"en":"Saathiya","hi":"साथिया"},
+                    "name" : "Saathiya",
+                    "name_lang" : {"en":"Saathiya","hi":"साथिया"},
                     "region" : "bollywood",
                     "year" : 2002,
                     "lang" : ["hindi"],
@@ -844,8 +845,8 @@ window.json_data = {
                     "quality" : {"video" : "hd"}
                 },
                 {
-                    //"name" : "Dil Dhadakne Do",
-                    "name" : {"en":"Dil Dhadakne Do","hi":"दिल धड़कने दो"},
+                    "name" : "Dil Dhadakne Do",
+                    "name_lang" : {"en":"Dil Dhadakne Do","hi":"दिल धड़कने दो"},
                     "region" : "bollywood",
                     "year" : 2015,
                     "lang" : ["hindi"],
@@ -952,6 +953,20 @@ window.json_data = {
                     "imdb_rate" : 5.8,
                     //"quality" : {"video" : "hd"},
                     //"subtitles" : true
+                },
+                {
+                    "name" : "Drishyam",
+                    "region" : "bollywood",
+                    "year" : 2015,
+                    "lang" : ["hindi"],
+                    "file_name" : "Drishyam.mkv",
+                    "ext" : "mkv",
+                    "file_size" : 729213271,
+                    "length" : 156,
+                    "img" : "img/.jpg",
+                    "imdb_rate" : 0,
+                    //"quality" : {"video" : "hd"},
+                    //"subtitles" : true
                 }
             ]
         },
@@ -1015,6 +1030,21 @@ window.json_data = {
                     "img" : "img/singam-2-tollywood.jpg",
                     "imdb_rate" : 6.2,
                     "quality" : {"video" : "sd"},
+                    //"subtitles" : true
+                },
+                {
+                    "name" : "Chennai Vs China",
+                    "types" : ["action"],
+                    "region" : "tollywood",
+                    "year" : 2014,
+                    "lang" : ["hindi"],
+                    "file_name" : "Chennai Vs China 2014 Hindi Movies DVDRip XViD.mkv",
+                    "ext" : "mkv",
+                    "file_size" : 720310451,
+                    "length" : 148,
+                    "img" : "img/.jpg",
+                    "imdb_rate" : 0,
+                    //"quality" : {"video" : "sd"},
                     //"subtitles" : true
                 }
             ]
