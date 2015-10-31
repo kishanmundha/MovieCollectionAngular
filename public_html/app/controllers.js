@@ -59,7 +59,8 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
         $scope.movieRegions = [
             "hollywood",
             "bollywood",
-            "tollywood"
+            "tollywood",
+            "gujrati"
         ];
 
         $scope.movieTypes = movie.getTypes();
@@ -80,6 +81,30 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
         $scope.filterLang = [];
         $scope.filterVideoQuality = [];
         $scope.filterSubtitles = false;
+        $scope.filterOther = {
+            "unwatchedOnly": false
+        };
+        
+        var getFilterFromCache = function() {
+            return JSON.parse($scope.getSessionValue('filterObj') || "{}");
+        };
+        
+        var setFilterToCache = function(obj) {
+            $scope.setSessionValue('filterObj', JSON.stringify(obj))
+        };
+        
+        /// store value in session
+        $scope.$watch('filterOther.unwatchedOnly', function() {
+            var obj = getFilterFromCache();
+            obj.filterOther = $scope.filterOther;
+            
+            setFilterToCache(obj);
+        });
+        
+        (function() {
+            var obj = getFilterFromCache();
+            $scope.filterOther = obj.filterOther || {};
+        })();
 
         /**
          * Get filter mode status
@@ -92,6 +117,7 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
                     || $scope.filterLang.length !== 0
                     || $scope.filterVideoQuality.length !== 0
                     || $scope.filterSubtitles === true
+                    || $scope.filterOther.unwatchedOnly === true
                     ;
         };
 
@@ -101,6 +127,10 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
          */
         $scope.filterMovies = function() {
             return function(item) {
+                if($scope.filterOther.unwatchedOnly === true && item.watched === true) {
+                    return false;
+                }
+                
                 if ($scope.filterRegions.length !== 0 && $scope.filterRegions.indexOf(item.region) === -1) {
                     return false;
                 }
@@ -161,6 +191,7 @@ movieControllers.controller('movieListCtrl', ['$scope', 'movie', '$http', '$wind
         ];
 
         $scope.displayLimitOptions = [
+            {"text": 8, "value": 8},
             {"text": 10, "value": 10},
             {"text": 20, "value": 20},
             {"text": 50, "value": 50}

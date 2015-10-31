@@ -3,7 +3,7 @@
     <head>
         <title ng-bind="'Movies' | translate"></title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
         <link rel="stylesheet" href="css/bootstrap.css"/>
         <script src="js/jquery-1.10.2.js"></script>
         <script src="js/bootstrap.js"></script>
@@ -161,10 +161,10 @@
     <body>
         <!-- no script section -->
         <noscript>
-            <div style="background-color:red;color:white; text-align: center; padding: 20px; margin-top: -20px;">
-                <h1>Javascript required</h1>
-                <p>Please enable javascript to view this page.</p>
-            </div>
+        <div style="background-color:red;color:white; text-align: center; padding: 20px; margin-top: -20px;">
+            <h1>Javascript required</h1>
+            <p>Please enable javascript to view this page.</p>
+        </div>
         </noscript>
 
         <div id="body_content" style="visibility: hidden;">
@@ -180,7 +180,6 @@
                     </div>
                     <div id='filterBodyArea' class="panel-body backcolor filter-body-area">
                         <div class="form-group">
-                            <label for="search" class="control-label" ng-bind="'Search' | translate"></label>
                             <input id="search" type="text" class="form-control" ng-model="query" placeholder="{{ 'Search' | translate }}" />
                         </div>
                         <!-- Features -->
@@ -241,6 +240,17 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Other -->
+                        <div class="panel panel-info panel-filter">
+                            <div class="panel-heading"><strong ng-bind="'Other' | translate"></strong> <span class='visible-xs' ng-show="filterLang.length > 0" style="font-size: 80%; text-transform: capitalize; color: black;"></span></div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <input id="unwatched_only" type="checkbox" ng-model="filterOther.unwatchedOnly" />
+                                    <label for="unwatched_only" style="text-transform: capitalize" ng-bind="'unwatched only' | translate"></label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -292,6 +302,10 @@
                                                     </div>
                                                     <div ng-show="movie.length" style="font-size:12px;"><span class="glyphicon glyphicon-time"></span> <span ng-bind="getMovieLengthString(movie.length)"></span></div>
                                                     <div ng-show="movie.file_size" style="font-size:12px;"><span ng-bind="getFileSizeString(movie.file_size)"></span></div>
+                                                </div>
+                                                <div ng-if="movie.watched" style="font-size:12px; position: absolute; right: 18px; bottom: 23px; padding: 2px 5px;">
+                                                    <!--<b>WATCHED</b>-->
+                                                    <span class="glyphicon glyphicon-ok" title="Watched"></span>
                                                 </div>
                                             </div>
                                         </div>
