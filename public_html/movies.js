@@ -1464,9 +1464,10 @@ window.json_data = {
                     "file_size": 0,
                     //"length": 0,
                     "img": "img/Hercules.jpg",
-                    "imdb_rate": 6.1
+                    "imdb_rate": 6.1,
                     //"quality" : {"video" : "sd"},
                     //"subtitles" : true,
+                    "watched": true
                 },
                 {
                     "name": "How to Train Your Dragon 2",
@@ -1833,6 +1834,7 @@ window.json_data = {
                     "img": "img/Crash.jpg",
                     "imdb_rate": 7.9,
                     "quality" : {"video" : "hd"},
+                    "watched": true
                 },
                 {
                     "name": "Hitch",
