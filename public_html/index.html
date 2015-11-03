@@ -196,8 +196,14 @@
                                 </div>
                                 <hr/>
                                 <div class="form-group">
-                                    <input id="f_subtitles" type="checkbox" ng-model="filterSubtitles"/>
-                                    <label for="f_subtitles" style="text-transform: capitalize;" ng-bind="'subtitles' | translate"></label>
+                                    <div>
+                                        <input id="f_subtitles" type="checkbox" ng-model="filterSubtitles"/>
+                                        <label for="f_subtitles" style="text-transform: capitalize;" ng-bind="'subtitles' | translate"></label>
+                                    </div>
+                                    <div>
+                                        <input id="unwatched_only" type="checkbox" ng-model="filterOther.unwatchedOnly" />
+                                        <label for="unwatched_only" style="text-transform: capitalize" ng-bind="'unwatched only' | translate"></label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -237,17 +243,6 @@
                                         <input id="lang_{{lang}}" type="checkbox" checklist-model="filterLang" checklist-value="lang" />
                                         <label for="lang_{{lang}}" style="text-transform: capitalize;" ng-bind="lang | translate"></label>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Other -->
-                        <div class="panel panel-info panel-filter">
-                            <div class="panel-heading"><strong ng-bind="'Other' | translate"></strong> <span class='visible-xs' ng-show="filterLang.length > 0" style="font-size: 80%; text-transform: capitalize; color: black;"></span></div>
-                            <div class="panel-body">
-                                <div class="form-group">
-                                    <input id="unwatched_only" type="checkbox" ng-model="filterOther.unwatchedOnly" />
-                                    <label for="unwatched_only" style="text-transform: capitalize" ng-bind="'unwatched only' | translate"></label>
                                 </div>
                             </div>
                         </div>
