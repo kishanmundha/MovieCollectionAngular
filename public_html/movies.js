@@ -1397,7 +1397,8 @@ window.json_data = {
                     //"length": 0,
                     "img": "img/Bullet-to-the-Head.jpg",
                     "imdb_rate": 5.7,
-                    "subtitles" : true
+                    "subtitles" : true,
+                    "watched": true
                 },
                 {
                     "name": "Captain Phillips",
